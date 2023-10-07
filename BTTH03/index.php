@@ -1,7 +1,9 @@
-<?php 
+<?php
+    include "./controllers/ClassController.php";
+    include "./controllers/StudentController.php";
 
-include "./Controllers/HomeCotroller.php";
-
-$pp = new HomeCotroller();
-
-$pp->indexSinhVien();
+    $controller = isset($_GET['c'])?$_GET['c']:'Student';
+    $past = $controller . "Controller";
+    $pp = new $past();
+    $pp->index();
+?>

@@ -1,6 +1,6 @@
 <?php 
 
-class SinhVien{
+class Student{
     private $id;
     private $tenSinhVien;
     private $email;
