@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h3 class="text-center mt-2">Thêm sinh viên</h3>
+    <h3 class="text-center mt-2">Chỉnh sửa thông tin lớp</h3>
     <div class="container-fluid">
         <div class="row">
             <div class="row justify-content-between p-3">
@@ -49,56 +49,25 @@
                 <div class="col-md-11">
                     <div class="row justify-content-center">
                         <div class="col-md-4">
-                            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method='POST'>
-                                <div class="input-group mt-3">
-                                    <span class="input-group-text">Tên sinh viên:</span>
-                                    <input type="text" class="form-control" name="name" placeholder="Nhập tên">
-                                </div>
+                            <form action="/index.php?c=Class&f=edit" method='POST'>
+                            <div class="input-group mt-3">
+                                <span for="name" class="input-group-text">ID:</span>
+                                <input type="text" class="form-control" name="id" value="<?=isset($row['id'])?$row['id']:''?>" readonly>
+                            </div>
 
                                 <div class="input-group mt-3">
-                                    <span class="input-group-text">Email:</span>
-                                    <input type="email" class="form-control" name="email" placeholder="Nhập email">
-                                </div>
-
-                                <div class="input-group mt-3">
-                                    <span class="input-group-text">Ngày sinh:</span>
-                                    <input type="date" class="form-control" name="ngaysinh" placeholder="Nhập ngày sinh">
-                                </div>
-
-                                <div class="input-group mt-3">
-                                    <span class="input-group-text">ID Lớp:</span>
-                                    <input type="text" class="form-control" name="idlop" placeholder="Nhập id lớp">
+                                    <span for="name" class="input-group-text">Tên lớp:</span>
+                                    <input type="text" class="form-control" name="name" value="<?=isset($row['tenLop'])?$row['tenLop']:''?>">
                                 </div>
 
                                 <div style="float: right;">
-                                    <button type="submit" class="btn btn-success mt-2 ">Thêm</button>
-                                    <a class="btn btn-warning mt-2" href="/index.php">Quay lại</a>
+                                    <button type="submit" class="btn btn-success mt-2 ">Sửa</button>
+                                    <a class="btn btn-warning mt-2" href="/index.php?c=Class">Quay lại</a>
                                 </div>          
                             </form>
                         </div>
                     </div>
                 </div>
-
-                <?php                        
-                    if(isset($_POST['name'])&isset($_POST['email'])&isset($_POST['ngaysinh'])&isset($_POST['idlop']))
-                    {
-                        $name = $_POST['name'];
-                        $email = $_POST['email'];
-                        $ngaysinh = $_POST['ngaysinh'];
-                        $idlop = $_POST['idlop'];
-                        // Kết nối đến cơ sở dữ liệu
-                        $conn = new PDO("mysql:host=localhost;dbname=QuanLySinhVien", 'root', 'Nevergon#3lose');   
-                        $sql = "INSERT INTO Student (tenSinhVien, email, ngaySinh, idLop) VALUES ('$name', '$email', '$ngaysinh', '$idlop');";
-                        $list_sql = $conn->prepare($sql);
-                        $list_sql->execute();
-
-                        if ($list_sql->rowCount()>0) {
-                            echo "Cập nhật thành công!";
-                        } else {
-                            echo "Lỗi: " . $list_sql->errorInfo();
-                        }
-                    }
-                ?>
 
                 <div class="col-md-1"></div>         
             </div>

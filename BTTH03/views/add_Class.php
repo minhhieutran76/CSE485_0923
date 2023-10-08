@@ -49,7 +49,7 @@
                 <div class="col-md-11">
                     <div class="row justify-content-center">
                         <div class="col-md-4">
-                            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method='POST'>
+                            <form action="/index.php?c=Class&f=add" method='POST'>
                                 <div class="input-group mt-3">
                                     <span for="name" class="input-group-text">Tên lớp:</span>
                                     <input type="text" class="form-control" name="name" placeholder="Nhập tên">
@@ -63,24 +63,6 @@
                         </div>
                     </div>
                 </div>
-
-                <?php                        
-                    if(isset($_POST['name']))
-                    {
-                        $name = $_POST['name'];
-                        // Kết nối đến cơ sở dữ liệu
-                        $conn = new PDO("mysql:host=localhost;dbname=QuanLySinhVien", 'root', 'Nevergon#3lose');   
-                        $sql = "INSERT INTO Class (tenLop) VALUES ('$name');";
-                        $list_sql = $conn->prepare($sql);
-                        $list_sql->execute();
-
-                        if ($list_sql->rowCount()>0) {
-                            echo "Cập nhật thành công!";
-                        } else {
-                            echo "Lỗi: " . $list_sql->errorInfo();
-                        }
-                    }
-                ?>
 
                 <div class="col-md-1"></div>         
             </div>

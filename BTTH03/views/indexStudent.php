@@ -13,7 +13,7 @@
         <div class="row">
             <div class="row justify-content-between p-3">
                 <div class="menu col-md-5 mt-3">
-                    <a class="text-decoration-none text-dark px-3" href="/index.php?c=Class">Lớp</a>
+                    <a class="text-decoration-none text-dark px-3" href="/index.php?c=Class">Lớp</a> 
                     <a class="text-decoration-none text-dark px-3" href="/index.php">Sinh viên</a>
                 </div>
 
@@ -46,7 +46,7 @@
             </div>
 
             <div class="col-md-10">
-                <a href="/services/add_Student.php" class="btn btn-success mb-3">Thêm sinh viên</a>
+                <a href="/views/add_Student.php" class="btn btn-success mb-3">Thêm sinh viên</a>
                 <div class="row align-item-center">
                     <div class="form-group col-md-3">
                         <input type="text" class="form-control" id="email" placeholder="Nhập email">
@@ -88,11 +88,30 @@
                                 <td><?=$listt->getEmail()?></td>
                                 <td><?=$listt->getNgaySinh()?></td>
                                 <td><?=$listt->getIdLop()?></td>
-                                <td><a href="/services/edit_Student.php?id=<?=$listt->getId()?>"><i class="bi bi-pencil-square"></i></a></td>
-                                <td><a href="/services/delete_Student.php?id=<?=$listt->getId()?>"><i class="bi bi-trash3-fill"></i></a></td>
+                                <td><a href="/index.php?f=idStudent&id=<?=$listt->getId()?>"><i class="bi bi-pencil-square"></i></a></td>
+                                <td><a data-bs-toggle="modal" data-bs-target="#id<?=$listt->getId() ?>"><i class="bi bi-trash3-fill"></i></a></td>
                             </tr>
-                        <?php
-                        }
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="id<?=$listt->getId();?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa sinh viên</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Bạn có chắc chắn muốn xóa sinh viên có id: <?=$listt->getId()?> ?
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                    <a class="btn btn-primary" href="/index.php?f=delete&id=<?=$listt->getId()?>">Xóa</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                                <?php
+                            }
                         ?>
                     </tbody>
                 </table>

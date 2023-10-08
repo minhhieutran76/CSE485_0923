@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h3 class="text-center mt-2">Thêm lớp</h3>
+    <h3 class="text-center mt-2">Chỉnh sửa thông tin lớp</h3>
     <div class="container-fluid">
         <div class="row">
             <div class="row justify-content-between p-3">
@@ -45,62 +45,44 @@
                 </ul>
             </div>
 
-            <?php
-                if(isset($_GET['id'])){
-                    $Id = $_GET['id'];
-                                
-
-                    $conn = new PDO("mysql:host=localhost;dbname=QuanLySinhVien", 'root', 'Nevergon#3lose');
-                    $sql = "SELECT * FROM Class where id = $Id";
-                    $list_sql = $conn->prepare($sql);
-                    $list_sql->execute();
-                    $row = $list_sql->fetch(PDO::FETCH_ASSOC);
-                                
-                }
-            ?>
-
             <div class="col-md-10">
                 <div class="col-md-11">
                     <div class="row justify-content-center">
                         <div class="col-md-4">
-                            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method='POST'>
+                            <form action="/index.php?f=edit" method='POST'>
                                 <div class="input-group mt-3">
                                     <span for="name" class="input-group-text">ID:</span>
-                                    <input type="text" class="form-control" name="id" value="<?=isset($row['id'])?$row['id']:""?>" readonly>
+                                    <input type="text" class="form-control" name="id" value="<?=isset($row['id'])?$row['id']:''?>" readonly>
                                 </div>
 
-                                <div class="input-group">
-                                    <span for="name" class="input-group-text">Tên lớp:</span>
-                                    <input type="text" class="form-control" name="name" value="<?=isset($row['tenLop'])?$row['tenLop']:""?>">
+                                <div class="input-group mt-3">
+                                    <span for="name" class="input-group-text">Tên sinh viên:</span>
+                                    <input type="text" class="form-control" name="name" value="<?=isset($row['tenSinhVien'])?$row['tenSinhVien']:''?>">
+                                </div>
+
+                                <div class="input-group mt-3">
+                                    <span for="name" class="input-group-text">Email:</span>
+                                    <input type="email" class="form-control" name="email" value="<?=isset($row['email'])?$row['email']:''?>">
+                                </div>
+
+                                <div class="input-group mt-3">
+                                    <span for="name" class="input-group-text">Ngày sinh:</span>
+                                    <input type="date" class="form-control" name="ngaysinh" value="<?=isset($row['ngaySinh'])?$row['ngaySinh']:''?>">
+                                </div>
+
+                                <div class="input-group mt-3">
+                                    <span for="name" class="input-group-text">ID lớp:</span>
+                                    <input type="id" class="form-control" name="idlop" value="<?=isset($row['idLop'])?$row['idLop']:''?>">
                                 </div>
 
                                 <div style="float: right;">
                                     <button type="submit" class="btn btn-success mt-2 ">Sửa</button>
-                                    <a class="btn btn-warning mt-2" href="/index.php?c=Class">Quay lại</a>
+                                    <a class="btn btn-warning mt-2" href="/index.php">Quay lại</a>
                                 </div>          
                             </form>
                         </div>
                     </div>
                 </div>
-
-                <?php                        
-                    if(isset($_POST['id'])&isset($_POST['name']))
-                    {
-                        $Id = $_POST['id'];
-                        $name = $_POST['name'];
-                        // Kết nối đến cơ sở dữ liệu
-                        $conn = new PDO("mysql:host=localhost;dbname=QuanLySinhVien", 'root', 'Nevergon#3lose');   
-                        $sql = "UPDATE Class SET tenLop = '$name' where id = $Id;";
-                        $list_sql = $conn->prepare($sql);
-                        $list_sql->execute();
-
-                        if ($list_sql->rowCount()>0) {
-                            echo "Cập nhật thành công!";
-                        } else {
-                            echo "Lỗi: " . $list_sql->errorInfo();
-                        }
-                    }
-                ?>
 
                 <div class="col-md-1"></div>         
             </div>

@@ -46,7 +46,7 @@
             </div>
 
             <div class="col-md-10">
-                <a href="/services/add_Class.php" class="btn btn-success mb-3">Thêm lớp</a>
+                <a href="/views/add_Class.php" class="btn btn-success mb-3">Thêm lớp</a>
                 <div class="row align-item-center">
                     <div class="form-group col-md-3">
                         <input type="text" class="form-control" id="email" placeholder="Nhập email">
@@ -84,11 +84,30 @@
                             <tr>
                                 <th scope="row"><?=$list->getId()?></th>
                                 <td><?=$list->getTenLop()?></td>
-                                <td><a href="/services/edit_Class.php?id=<?=$list->getId()?>"><i class="bi bi-pencil-square"></i></a></td>
-                                <td><a href="./services/delete_Class.php?id=<?=$list->getId()?>"><i class="bi bi-trash3-fill"></i></a></td>
+                                <td><a href="/index.php?c=Class&f=idClass&id=<?=$list->getId()?>"><i class="bi bi-pencil-square"></i></a></td>
+                                <td><a data-bs-toggle="modal" data-bs-target="#id<?=$list->getId() ?>"><i class="bi bi-trash3-fill"></i></a></td>
                             </tr>
-                        <?php
-                        }
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="id<?=$list->getId();?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa lớp</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Bạn có chắc chắn muốn xóa lớp có id: <?=$list->getId()?> ?
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                    <a class="btn btn-primary" href="/index.php?c=Class&f=delete&id=<?=$list->getId()?>">Xóa</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                                <?php
+                            }
                         ?>
                     </tbody>
                 </table>
