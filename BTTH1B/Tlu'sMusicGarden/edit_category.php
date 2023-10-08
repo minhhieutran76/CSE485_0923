@@ -38,25 +38,40 @@
 
     <div class="container">
         <div class="row ">
-            <form action="<?php echo $_SERVER['PHP_SELF'];?>">
+            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method='POST'>
                 <h3 class = "text-center">SỬA THÔNG TIN THỂ LOẠI</h3>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Mã thể loại</span>
-                    <input type="text" class="form-control" name = 'ID' value="<?=$row['ma_tloai']?>">
+                    <input type="text" class="form-control" name = 'ID' value="<?=isset($row['ma_tloai'])?$row['ma_tloai']:""?>" readonly>
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Tên thể loại</span>
-                    <input type="text" class="form-control" name = 'Theloai' value="<?=$row['ten_tloai']?>">
+                    <input type="text" class="form-control" name = 'Theloai' value="<?=isset($row['ten_tloai'])?$row['ten_tloai']:""?>">
                 </div>
 
                 <div style="float: right;">
-                    <a href="#"><button type="submit" class="btn btn-success mt-2 ">Lưu lại</button></a>
+                    <a href="#"><button type="submit" class="btn btn-success mt-2 ">Sửa</button></a>
                     <a class="btn btn-warning mt-2" href="category.php ">Quay lại</a>
                 </div>
             </form>
         </div>
     </div>
+
+    <?php
+        if(isset($_POST['ID'])&isset($_POST['Theloai'])){
+            $Id = $_POST['ID'];
+            $name = $_POST['Theloai'];
+            $conn = new PDO("mysql:host = localhost;dbname=BTTH01_CSE485", "root", "Nevergon#3lose");
+            $sql = "UPDATE theloai SET ten_tloai = '$name'  WHERE ma_tloai = $Id ;";
+            $list_sql = $conn->prepare($sql);
+            $list_sql->execute();
+
+            if ($list_sql->rowCount()>0){
+                echo "<p class='text-center'>Thành công</p>";
+            }
+        }
+    ?>
 
     <div class="container">
         <div class="row" style="margin-top: 100px">
