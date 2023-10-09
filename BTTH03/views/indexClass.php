@@ -85,11 +85,11 @@
                                 <th scope="row"><?=$list->getId()?></th>
                                 <td><?=$list->getTenLop()?></td>
                                 <td><a href="/index.php?c=Class&f=idClass&id=<?=$list->getId()?>"><i class="bi bi-pencil-square"></i></a></td>
-                                <td><a data-bs-toggle="modal" data-bs-target="#id<?=$list->getId() ?>"><i class="bi bi-trash3-fill"></i></a></td>
+                                <td><a data-bs-toggle="modal" data-bs-target="#id<?=$list->getId()?>"><i class="bi bi-trash3-fill"></i></a></td>
                             </tr>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="id<?=$list->getId();?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="id<?=$list->getId()?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">

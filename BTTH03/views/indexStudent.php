@@ -89,11 +89,11 @@
                                 <td><?=$listt->getNgaySinh()?></td>
                                 <td><?=$listt->getIdLop()?></td>
                                 <td><a href="/index.php?f=idStudent&id=<?=$listt->getId()?>"><i class="bi bi-pencil-square"></i></a></td>
-                                <td><a data-bs-toggle="modal" data-bs-target="#id<?=$listt->getId() ?>"><i class="bi bi-trash3-fill"></i></a></td>
+                                <td><a data-bs-toggle="modal" data-bs-target="#id<?=$listt->getId()?>"><i class="bi bi-trash3-fill"></i></a></td>
                             </tr>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="id<?=$listt->getId();?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="id<?=$listt->getId()?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
