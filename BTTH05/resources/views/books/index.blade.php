@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 <!-- Triển khai title -->
-@section('title', 'HomePage')
+@section('title', 'Book')
 
 
 @section('main')
@@ -22,8 +22,8 @@
                     <th scope="row">{{ $book->id }}</th>
                     <td>{{ $book->author_id }}</td>
                     <td>{{ $book->title }}</td>
-                    <td><a href="{{route('books.edit', $book->id)}}" class="btn btn-success">Edit</a></td>
-                    <td><a data-bs-toggle="modal" data-bs-target="#deleteModal{{ $book->id }}" class="btn btn-warning">Delete</a></td>
+                    <td><a href="{{route('books.edit', $book->id)}}"><i class="bi bi-pencil-square"></i></a></td>
+                    <td><a data-bs-toggle="modal" data-bs-target="#deleteModal{{ $book->id }}"><i class="bi bi-trash3-fill"></i></a></td>
                 </tr>
 
                 <div class="modal fade" id="deleteModal{{ $book->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -54,4 +54,7 @@
     </div>
        
 @endsection
+
+
+
     

@@ -8,6 +8,7 @@
         @yield('title')
     </title>
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('icons/font/bootstrap-icons.min.css')}}">
 
     
 </head>
