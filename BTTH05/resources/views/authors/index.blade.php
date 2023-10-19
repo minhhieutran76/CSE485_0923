@@ -50,6 +50,10 @@
 
         </table>
     </div>
+
+    <div class="d-flex justify-content-center mt-3">
+        {{ $authors->links('pagination::bootstrap-4')}}
+    </div>
        
 @endsection
 
