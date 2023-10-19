@@ -1,23 +1,46 @@
-<form action="{{route('books.update', $book->id)}}" method="POST">
-    @csrf
-    @method('PUT')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <title>Edit Book</title>
+</head>
+<body>
+    <h1 class="text-center bg-success mt-3">Edit Book</h1>
+    <div class="row">
+        <div class="col-md-3"></div>
 
-    <div class="form-group">
-        <label for="name">ID: </label>
-        <input type="text" name="id" class='form-control' value="{{$book->id}}" required>
+        <div class="col-md-6">
+            <form action="{{route('books.update', $book->id)}}" method="POST">
+                @csrf
+                @method('PUT')
+            
+                <div class="form-group mt-3">
+                    <label for="name">ID: </label>
+                    <input type="text" name="id" class='form-control' value="{{$book->id}}" required>
+                </div>
+            
+                <div class="form-group mt-2">
+                    <label for="name">Author ID: </label>
+                    <input type="text" name="author_id" class='form-control' value="{{$book->author_id}}" required>
+                </div>
+            
+                <div class="form-group mt-2">
+                    <label for="name">Title: </label>
+                    <input type="text" name="title" class='form-control' value="{{$book->title}}" required>
+                </div>
+            
+                <div class="form-group mt-3" style="margin-left: 350px">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-3"></div>
     </div>
 
-    <div class="form-group">
-        <label for="name">Author ID: </label>
-        <input type="text" name="author_id" class='form-control' value="{{$book->author_id}}" required>
-    </div>
-
-    <div class="form-group">
-        <label for="name">Title: </label>
-        <input type="text" name="title" class='form-control' value="{{$book->title}}" required>
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Update</button>
-    </div>
-</form>
+    <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
+</body>
+</html>
