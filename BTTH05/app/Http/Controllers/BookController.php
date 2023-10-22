@@ -28,15 +28,15 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Book $book)
     {
         $request->validate([
             'author_id' => 'required',
             'title' => 'required',
         ]);
 
-        Book::create($request->all());
-        return redirect()->route('books.index')->with('success', 'Book created successfully');
+        $book = Book::create($request->all());
+        return redirect()->route('books.index', ['page' => Book::paginate(10)->lastPage()])->with('success', 'Book has id '. $book->id .' created successfully');
     }
 
     /**
@@ -67,7 +67,7 @@ class BookController extends Controller
         ]);
 
         $book->update($request->all());
-        return redirect()->route('books.index')->with('success', 'Book updated successfully');
+        return redirect()->route('books.index')->with('success', 'Book has id '. $book->id .' updated successfully');
     }
 
     /**
@@ -76,6 +76,6 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
-        return redirect()->route('books.index')->with('success', 'Author deleted successfully');
+        return redirect()->route('books.index')->with('success', 'Book has id '. $book->id .' deleted successfully');
     }
 }

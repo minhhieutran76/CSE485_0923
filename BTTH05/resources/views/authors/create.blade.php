@@ -22,7 +22,7 @@
                 </div>
             
                 <div class="form-group mt-3" style="margin-left: 350px">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
                 </div>
             </form>
         </div>

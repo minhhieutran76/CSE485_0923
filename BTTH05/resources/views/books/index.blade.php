@@ -6,7 +6,22 @@
 
 @section('main')
     <h1 class="text-center bg-info mb-3">List Book</h1>
-    <a href="{{route('books.create')}}" class="btn btn-success">Add New Book</a>
+    <a href="{{route('books.create')}}" class="btn btn-success mb-2">Add New Book</a>
+
+    <div class="alert alert-success" id="successMessage">
+        {{ session('success') }}
+    </div>
+    
+    <script>
+        // Sử dụng JavaScript để ẩn thông báo sau 3 giây
+        setTimeout(function () {
+            var successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+                successMessage.style.display = 'none';
+            }
+        }, 2000); // 2 giây
+    </script>
+
     <div class="row mt-3">
         <table class="table">
             <tr>

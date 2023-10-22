@@ -28,14 +28,14 @@ class AuthorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Author $author)
     {
         $request->validate([
             'name' => 'required',
         ]);
 
-        Author::create($request->all());
-        return redirect()->route('authors.index')->with('success', 'Author created successfully');
+        $author = Author::create($request->all());
+        return redirect()->route('authors.index', ['page' => Author::paginate(10)->lastPage()])->with('success', 'Author has id '. $author->id . ' created successfully');
     }
 
     /**
@@ -65,7 +65,7 @@ class AuthorController extends Controller
         ]);
 
         $author->update($request->all());
-        return redirect()->route('authors.index')->with('success', 'Author updated successfully');
+        return redirect()->route('authors.index')->with('success', 'Author has id '. $author->id . ' updated successfully');
     }
 
     /**
@@ -74,6 +74,7 @@ class AuthorController extends Controller
     public function destroy(Author $author)
     {
         $author->delete();
-        return redirect()->route('authors.index')->with('success', 'Author deleted successfully');
+
+        return redirect()->route('authors.index')->with('success', 'Author has id '. $author->id . ' deleted successfully');
     }
 }
